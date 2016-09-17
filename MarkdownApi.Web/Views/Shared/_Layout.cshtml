@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Markdown API</title>
+    @Styles.Render("~/content/css")
+</head>
+<body>
+    <div class="body-content">
+        @RenderBody()
+    </div>
+    @Scripts.Render("~/bundles/core")
+    @Scripts.Render("~/bundles/app")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
