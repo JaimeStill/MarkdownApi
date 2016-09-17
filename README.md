@@ -1,5 +1,9 @@
 # Markdown API
 
+For more detailed information on Markup, see [Markdown Syntax](https://daringfireball.net/projects/markdown/syntax)
+
+![markdowneditor](https://cloud.githubusercontent.com/assets/14102723/18610595/6a886ac2-7cee-11e6-8213-6cacea8844f6.png)
+
 ## Dependencies
 
 ### External Dependencies
