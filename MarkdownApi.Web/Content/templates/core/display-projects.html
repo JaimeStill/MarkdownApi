@@ -1,0 +1,12 @@
+﻿<div>
+    <h2>Markdown Projects</h2>
+    <hr />
+    <a href="/Project" class="btn btn-success">Add Project</a>
+    <hr />
+    <div ng-if="model.projects.length > 0" ng-repeat="project in model.projects">
+        <project-card project="project"></project-card>
+    </div>
+    <div ng-if="!(model.projects.length >0)">
+        <h3>No projects created yet...</h3>
+    </div>
+</div>

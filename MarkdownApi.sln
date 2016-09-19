@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkdownApi.Web", "MarkdownApi.Web\MarkdownApi.Web.csproj", "{FCA0047A-8999-4875-95C4-031C5FCC70AE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkdownApi.Data", "MarkdownApi.Data\MarkdownApi.Data.csproj", "{C7648229-697C-42BE-9410-0B8DD43E5011}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{FCA0047A-8999-4875-95C4-031C5FCC70AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCA0047A-8999-4875-95C4-031C5FCC70AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCA0047A-8999-4875-95C4-031C5FCC70AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7648229-697C-42BE-9410-0B8DD43E5011}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7648229-697C-42BE-9410-0B8DD43E5011}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7648229-697C-42BE-9410-0B8DD43E5011}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7648229-697C-42BE-9410-0B8DD43E5011}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,7 +5,14 @@
             replace: true,
             templateUrl: '/Content/templates/core/markdown-editor.html',
             link: function (scope) {
-                scope.render = markdownSvc.render;
+                scope.document = {
+                    html: '',
+                    markdown: '',
+                    title: '',
+                    id: 0
+                };
+
+                markdownSvc.render = scope.document;
             }
         }
     };

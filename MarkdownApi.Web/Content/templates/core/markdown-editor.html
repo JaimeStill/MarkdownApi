@@ -1,11 +1,37 @@
 ﻿<div>
-    <h2 class="text-center">Markdown Editor</h2>
+    <ul class="nav nav-pills" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#editor" role="tab" data-toggle="pill">Editor</a>
+        </li>
+        <li role="presentation">
+            <a href="#preview" role="tab" data-toggle="pill">Preview</a>
+        </li>
+    </ul>
     <hr />
-    <div class="row">
-        <div class="col-sm-4">
-            <textarea ng-model="render.markdown" class="form-control md-editor" spellcheck="false" rows="40"></textarea>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="editor">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="input-group">
+                        <div class="input-group-addon">Title</div>
+                        <input class="form-control" ng-model="document.title" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="btn-group">
+                        <button class="btn btn-success" ng-click="saveDocument()">Save</button>
+                        <button class="btn btn-danger" ng-click="deleteDocument()">Delete</button>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <textarea ng-model="document.markdown" class="form-control" spellcheck="false" rows="35"></textarea>
         </div>
-        <div class="col-sm-8">
+        <div role="tabpanel" class="tab-pane" id="preview">
+            <h3 ng-bind="document.title"></h3>
+            <hr ng-if="document.title.length > 0" />
             <render-markdown></render-markdown>
         </div>
     </div>
