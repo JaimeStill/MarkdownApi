@@ -4,11 +4,12 @@
             restrict: 'EA',
             replace: true,
             templateUrl: '/Content/templates/core/render-markdown.html',
+            scope: {
+                render: '='
+            },
             compile: function (element, attributes) {
                 return {
                     pre: function (scope) {
-                        scope.render = markdownSvc.render;
-
                         scope.$watch(function () { return scope.render.markdown; },
                             function (newValue) {
                                 scope.render.html = $sce.trustAsHtml(markdownSvc.makeHtml(newValue));
@@ -28,5 +29,5 @@
     };
 
     renderMarkdown.$inject = ['markdownSvc', '$sce'];
-    markdownApp.directive('renderMarkdown', renderMarkdown);
+    wikiApp.directive('renderMarkdown', renderMarkdown);
 }());

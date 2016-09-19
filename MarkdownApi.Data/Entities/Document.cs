@@ -3,10 +3,10 @@
     public class Document
     {
         public int Id { get; set; }
-        public int ProjectId { get; set; }
+        public int WikiId { get; set; }
         public string Title { get; set; }
         public string Markdown { get; set; }
 
-        public Project Project { get; set; }
+        public Wiki Wiki { get; set; }
     }
 }

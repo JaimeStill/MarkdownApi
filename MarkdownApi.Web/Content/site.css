@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 20px;
+    padding-top: 60px;
     padding-bottom: 20px;
 }
 
@@ -16,10 +16,53 @@
     white-space: normal;
 }
 
-.btn-group {
-    padding-top: 10px;
-}
-
 .input-group {
     padding-bottom: 10px;
+}
+
+.card-link {
+    text-decoration: none;
+}
+
+.card-link:hover {
+    text-decoration: none;
+}
+
+.card {
+    width: 100%;
+    background-color: #0073c6;
+    color: #eee;
+    border-radius: 4px;
+    padding: 10px 16px;
+}
+
+.card:hover {
+    color: #fff;
+    text-decoration: none;
+    background-color: #0094ff;
+}
+
+.card-header {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0px;
+    margin-bottom: 10px;
+    padding: 0px;    
+}
+
+.card-content {
+    margin: 0px;
+    padding: 0px;
+}
+
+.progress-bar {
+    width: 100%;
+}
+
+.vertical-center {
+    vertical-align: middle!important;
+}
+
+.wiki-header {
+    font-size: 24px;
 }

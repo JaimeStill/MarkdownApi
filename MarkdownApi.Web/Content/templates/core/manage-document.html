@@ -1,0 +1,50 @@
+﻿<div>
+    <ul class="nav nav-pills" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#editor" role="tab" data-toggle="pill">Editor</a>
+        </li>
+        <li role="presentation">
+            <a href="#viewer" role="tab" data-toggle="pill">View</a>
+        </li>
+    </ul>
+    <hr />
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="editor">
+            <div class="btn-toolbar" role="toolbar">
+                <div class="btn-group">
+                    <a class="btn btn-primary" ng-href="/Admin/Wiki/{{wikiId}}">Return to Wiki</a>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-success" ng-click="saveDocument()">Save Document</button>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-danger" ng-click="deleteDocument()">Delete Document</button>
+                </div>
+            </div>
+            <hr />
+            <p class="wiki-header">
+                <strong ng-bind="document.wiki.name"></strong> - <span ng-bind="document.wiki.description"></span>
+            </p>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <div class="input-group-addon">Title</div>
+                        <input class="form-control" ng-model="document.title" />
+                    </div>
+                </div>
+            </div>
+            <h3>Markdown</h3>
+            <textarea ng-model="document.markdown" class="form-control" spellcheck="false" rows="35"></textarea>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="viewer">
+            <p class="wiki-header">
+                <strong ng-bind="document.wiki.name"></strong> - <span ng-bind="document.wiki.description"></span>
+            </p>
+            <hr />
+            <h2 ng-bind="document.title"></h2>
+            <hr />
+            <render-markdown render="document"></render-markdown>
+        </div>
+    </div>
+</div>

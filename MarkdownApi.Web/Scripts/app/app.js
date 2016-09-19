@@ -1,1 +1,1 @@
-﻿var markdownApp = angular.module('app', []);
+﻿var wikiApp = angular.module('app', []);

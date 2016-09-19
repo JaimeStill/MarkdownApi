@@ -18,5 +18,5 @@
     };
 
     utilitySvc.$inject = ['toastrSvc'];
-    markdownApp.factory('utilitySvc', utilitySvc);
+    wikiApp.factory('utilitySvc', utilitySvc);
 }());

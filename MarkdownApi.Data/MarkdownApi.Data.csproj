@@ -51,10 +51,18 @@
   <ItemGroup>
     <Compile Include="AppDbContext.cs" />
     <Compile Include="Entities\Document.cs" />
-    <Compile Include="Entities\Project.cs" />
+    <Compile Include="Entities\Wiki.cs" />
     <Compile Include="Migrations\201609172229234_initial.cs" />
     <Compile Include="Migrations\201609172229234_initial.Designer.cs">
       <DependentUpon>201609172229234_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609191415204_project-markdown.cs" />
+    <Compile Include="Migrations\201609191415204_project-markdown.Designer.cs">
+      <DependentUpon>201609191415204_project-markdown.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609191910123_project-to-wiki.cs" />
+    <Compile Include="Migrations\201609191910123_project-to-wiki.Designer.cs">
+      <DependentUpon>201609191910123_project-to-wiki.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,6 +74,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201609172229234_initial.resx">
       <DependentUpon>201609172229234_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609191415204_project-markdown.resx">
+      <DependentUpon>201609191415204_project-markdown.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609191910123_project-to-wiki.resx">
+      <DependentUpon>201609191910123_project-to-wiki.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

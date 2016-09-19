@@ -2,11 +2,13 @@
 
 namespace MarkdownApi.Web.Models
 {
-    public class ProjectModel
+    public class WikiModel
     {
         public int id { get; set; }
         public string name { get; set; }
         public string description { get; set; }
+        public string markdown { get; set; }
+        public string html { get; set; }
         public IEnumerable<DocumentModel> documents { get; set; }
     }
 }

@@ -1,0 +1,13 @@
+﻿@model int?
+@{
+    if (Model.HasValue)
+    {
+        ViewBag.Title = "Manage Wiki";
+    }
+    else
+    {
+        ViewBag.Title = "Add Wiki";
+    }
+}
+
+<manage-wiki wiki-id="@Model"></manage-wiki>

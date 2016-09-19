@@ -14,7 +14,7 @@ namespace MarkdownApi.Data
         }
 
         public DbSet<Document> Documents { get; set; }
-        public DbSet<Project> Projects { get; set; }
+        public DbSet<Wiki> Wikis { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

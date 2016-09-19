@@ -45,5 +45,5 @@
         };
     };
 
-    markdownApp.factory('toastrSvc', toastrSvc);
+    wikiApp.factory('toastrSvc', toastrSvc);
 }());
