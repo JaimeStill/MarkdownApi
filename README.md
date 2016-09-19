@@ -1,5 +1,23 @@
 # In Progress
 
+## Remaining Tasks
+
+* Add a Category table that has a one-to-many with Wiki
+    * Extension Methods
+    * API
+    * Service
+    * Management View
+    * Directive(s)
+* Add Category details to Wiki directives
+    * Display category on wiki-card
+    * Type the category, and use a CreateIfNotExists extension method to apply the CategoryId appropriately.
+* Create a home page dashboard
+    * Retrieves categories in alphabetical order. For each category, render a display-category directive that allows a collapsible region to render a wiki-card for each Wiki in the Category.
+* Create Wiki View
+    * Main content is displayed in a col-?-9 panel on the left of the page, and a linked list of documents is displayed in a col-?-3 sidebar on the right of the page. The top of the sidebar will have a link to the main Wiki itself.
+* Create Document View
+    * Same as wiki view, but for rendering document content
+
 # Markdown API
 
 For more detailed information on Markdown, see [Markdown Syntax](https://daringfireball.net/projects/markdown/syntax)
