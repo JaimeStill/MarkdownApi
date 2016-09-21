@@ -19,11 +19,25 @@
                     </ul>
                 </li>
             </ul>
-            <div class="navbar-form navbar-left" ng-if="isDashboard">
-                <div class="form-group">
-                    <input class="form-control" placeholder="Search" ng-model="model.search" />
+            <div ng-if="isDashboard">
+                <div class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input class="form-control" placeholder="Search Categories" ng-model="model.categorySearch" />
+                    </div>
+                    <button class="btn btn-default" ng-click="findCategories()">Find Categories</button>
                 </div>
-                <button class="btn btn-default" ng-click="findWikis()">Find Wikis</button>
+                <div class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input class="form-control" placeholder="Search Wikis" ng-model="model.wikiSearch" />
+                    </div>
+                    <button class="btn btn-default" ng-click="findWikis()">Find Wikis</button>
+                </div>
+                <div class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input class="form-control" placeholder="Search Documents" ng-model="model.documentSearch" />
+                    </div>
+                    <button class="btn btn-default" ng-click="findDocuments()">Find Documents</button>
+                </div>
             </div>
         </div>
     </div>

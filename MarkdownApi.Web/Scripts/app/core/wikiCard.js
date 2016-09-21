@@ -6,7 +6,7 @@
             templateUrl: '/Content/templates/core/wiki-card.html',
             scope: {
                 wiki: '=',
-                wikiLink: '@'
+                wikiLink: '='
             }
         };
     };

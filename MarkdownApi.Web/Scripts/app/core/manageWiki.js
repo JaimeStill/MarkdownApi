@@ -14,7 +14,10 @@
                             name: '',
                             description: '',
                             markdown: '',
-                            html: ''
+                            html: '',
+                            category: {
+                                name: ''
+                            }
                         }
 
                         if (scope.wikiId > 0) {
@@ -49,6 +52,11 @@
 
                             if (wiki.description === null || wiki.description === undefined || wiki.description === '') {
                                 toastrSvc.alertError("Description must have a value", "Invalid Wiki");
+                                return false;
+                            }
+
+                            if (wiki.category.name === null || wiki.category.name === undefined || wiki.category.name === '') {
+                                toastrSvc.alertError("Category must have a value", "Invalid Wiki");
                                 return false;
                             }
 

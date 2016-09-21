@@ -9,6 +9,7 @@ namespace MarkdownApi.Web.Models
         public string description { get; set; }
         public string markdown { get; set; }
         public string html { get; set; }
+        public CategoryModel category { get; set; }
         public IEnumerable<DocumentModel> documents { get; set; }
     }
 }

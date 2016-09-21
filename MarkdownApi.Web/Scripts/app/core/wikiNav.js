@@ -1,5 +1,5 @@
 ﻿(function () {
-    var wikiNav = function (wikiSvc) {
+    var wikiNav = function (categorySvc) {
         return {
             restrict: 'EA',
             replace: true,
@@ -8,24 +8,42 @@
             link: function (scope) {
                 scope.isDashboard = false;
                 scope.model = {
-                    search: ''
+                    categorySearch: '',
+                    wikiSearch: '',
+                    documentSearch: ''
                 };
 
                 if (window.location.pathname === '/' || window.location.pathname === '/Admin') {
                     scope.isDashboard = true;
                 }
 
-                scope.findWikis = function () {
-                    if (scope.model.search === null || scope.model.search === undefined || scope.model.search === '') {
-                        wikiSvc.getWikis();
+                scope.findCategories = function () {
+                    if (scope.model.categorySearch === null || scope.model.categorySearch === undefined || scope.model.categorySearch === '') {
+                        categorySvc.getCategories();
                     } else {
-                        wikiSvc.findWikis(scope.model.search);
+                        categorySvc.findCategories(scope.model.categorySearch);
+                    }
+                }
+
+                scope.findWikis = function () {
+                    if (scope.model.wikiSearch === null || scope.model.wikiSearch === undefined || scope.model.wikiSearch === '') {
+                        categorySvc.getCategories();
+                    } else {
+                        categorySvc.findWikis(scope.model.wikiSearch);
+                    }
+                }
+
+                scope.findDocuments = function () {
+                    if (scope.model.documentSearch === null || scope.model.documentSearch === undefined || scope.model.documentSearch === '') {
+                        categorySvc.getCategories();
+                    } else {
+                        categorySvc.findDocuments(scope.model.documentSearch);
                     }
                 }
             }
         }
     };
 
-    wikiNav.$inject = ['wikiSvc'];
+    wikiNav.$inject = ['categorySvc'];
     wikiApp.directive('wikiNav', wikiNav);
 }());

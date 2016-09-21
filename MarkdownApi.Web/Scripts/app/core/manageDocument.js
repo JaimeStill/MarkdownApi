@@ -15,7 +15,10 @@
                     markdown: '',
                     html: '',
                     wiki: {
-                        id: scope.wikiId
+                        id: scope.wikiId,
+                        category: {
+                            name: ''
+                        }
                     }
                 }
 

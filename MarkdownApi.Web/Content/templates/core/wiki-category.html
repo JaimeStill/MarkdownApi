@@ -1,0 +1,36 @@
+﻿<div>
+    <div ng-if="!(isEditing)" class="row">
+        <div class="col-xs-8">
+            <a class="card-link" data-toggle="collapse" href="#{{category.name | dashify}}">
+                <h2 ng-bind="category.name"></h2>
+            </a>
+        </div>
+        <div class="col-xs-4 text-right" ng-if="isManaging">
+            <button class="btn btn-primary" ng-click="editCategory()">Edit Category</button>
+        </div>
+    </div>
+    <div ng-if="isEditing">
+        <div class="row">
+            <div class="col-xs-8">
+                <input class="form-control" ng-model="category.name" />
+            </div>
+            <div class="col-xs-4 text-right">
+                <div class="btn-group">
+                    <button class="btn btn-success" ng-click="renameCategory()">Rename</button>
+                    <button class="btn btn-default" ng-click="cancelEdit()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="collapse in" id="{{category.name | dashify}}">
+        <hr />
+        <div class="row">
+            <div ng-repeat="wiki in category.wikis" ng-if="category.wikis.length > 0" class="col-sm-3">
+                <wiki-card wiki="wiki" wiki-link="wikiLink"></wiki-card>
+            </div>
+            <div ng-if="!(category.wikis.length > 0)">
+                <h3>This category does not contain any Wikis...</h3>
+            </div>
+        </div>
+    </div>
+</div>

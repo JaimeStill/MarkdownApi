@@ -33,7 +33,7 @@ namespace MarkdownApi.Web.Models.Extensions
         public static async Task<DocumentModel> GetDocument(this AppDbContext context, int documentId)
         {
             var document = await context.Documents.FindAsync(documentId);
-            var wiki = await context.Wikis.FindAsync(document.WikiId);
+            var wiki = context.Wikis.Include("Category").FirstOrDefault(x => x.Id == document.WikiId);
 
             var model = new DocumentModel
             {
@@ -44,7 +44,12 @@ namespace MarkdownApi.Web.Models.Extensions
                 {
                     id = wiki.Id,
                     name = wiki.Name,
-                    description = wiki.Description
+                    description = wiki.Description,
+                    category = new CategoryModel
+                    {
+                        id = wiki.CategoryId,
+                        name = wiki.Category.Name
+                    }
                 }
             };
 

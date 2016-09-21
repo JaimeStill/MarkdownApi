@@ -21,6 +21,7 @@ namespace MarkdownApi.Web
                 "~/Scripts/app/*.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                "~/Scripts/app/core/filters/*.js",
                 "~/Scripts/app/core/services/*.js",
                 "~/Scripts/app/core/*.js"));
 

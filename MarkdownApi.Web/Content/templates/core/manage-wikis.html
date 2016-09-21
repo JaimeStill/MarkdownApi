@@ -1,15 +1,14 @@
 ﻿<div>
-    <h2>Edit Wikis</h2>
+    <h2>Manage Wikis</h2>
     <hr />
     <a href="/Admin/Wiki" class="btn btn-success">Add Wiki</a>
     <hr />
     <div ng-if="!(model.loading)">
-        <div class="row">
-            <div ng-if="model.wikis.length > 0" ng-repeat="wiki in model.wikis" class="col-sm-3">
-                <wiki-card wiki="wiki" wiki-link="/Admin/Wiki/{{wiki.id}}"></wiki-card>
-            </div>
+        <div ng-if="model.categories.length > 0" ng-repeat="category in model.categories">
+            <wiki-category category="category" wiki-link="/Admin/Wiki/{{wiki.id}}" is-managing="true"></wiki-category>
+            <hr ng-if="$index < (model.categories.length - 1)" />
         </div>
-        <div ng-if="!(model.wikis.length >0)">
+        <div ng-if="!(model.categories.length >0)">
             <h3 ng-bind="model.emptyMessage"></h3>
         </div>
     </div>

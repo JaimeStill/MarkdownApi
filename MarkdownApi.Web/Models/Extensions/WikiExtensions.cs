@@ -19,59 +19,59 @@ namespace MarkdownApi.Web.Models.Extensions
                     id = x.Id,
                     name = x.Name,
                     description = x.Description,
-                    markdown = x.Markdown
+                    markdown = x.Markdown,
+                    category = new CategoryModel
+                    {
+                        id = x.CategoryId,
+                        name = x.Category.Name
+                    }
                 }).OrderBy(x => x.name).AsEnumerable();
 
                 return model;
             });
         }
 
-        public static Task<IEnumerable<WikiModel>> FindWikis(this AppDbContext context, string wikis)
+        public static Task<WikiModel> GetWiki(this AppDbContext context, int id)
         {
             return Task.Run(() =>
             {
-                var model = context.Wikis.Where(x => x.Name.ToLower().Contains(wikis.ToLower())).Select(x => new WikiModel
+                var wiki = context.Wikis.Include("Category").Include("Documents").FirstOrDefault(x => x.Id == id);
+
+                var model = new WikiModel
                 {
-                    id = x.Id,
-                    name = x.Name,
-                    description = x.Description,
-                    markdown = x.Markdown
-                }).OrderBy(x => x.name).AsEnumerable();
+                    id = wiki.Id,
+                    name = wiki.Name,
+                    description = wiki.Description,
+                    markdown = wiki.Markdown,
+                    category = new CategoryModel
+                    {
+                        id = wiki.CategoryId,
+                        name = wiki.Category.Name
+                    },
+                    documents = wiki.Documents.Select(x => new DocumentModel
+                    {
+                        id = x.Id,
+                        markdown = x.Markdown,
+                        title = x.Title
+                    }).AsEnumerable()
+                };
 
                 return model;
             });
-        }
-
-        public async static Task<WikiModel> GetWiki(this AppDbContext context, int id)
-        {
-            var wiki = await context.Wikis.FindAsync(id);
-
-            var model = new WikiModel
-            {
-                id = wiki.Id,
-                name = wiki.Name,
-                description = wiki.Description,
-                markdown = wiki.Markdown,
-                documents = wiki.Documents.Select(x => new DocumentModel
-                {
-                    id = x.Id,
-                    markdown = x.Markdown,
-                    title = x.Title
-                }).AsEnumerable()
-            };
-
-            return model;
         }
 
         public static async Task<WikiModel> AddWiki(this AppDbContext context, WikiModel model)
         {
             if (await model.Validate(context))
             {
+                var category = await context.CreateCategoryIfNotExists(model.category.name);
+
                 var wiki = new Wiki
                 {
                     Name = model.name,
                     Description = model.description,
-                    Markdown = model.markdown
+                    Markdown = model.markdown,
+                    CategoryId = category.Id
                 };
 
                 context.Wikis.Add(wiki);
@@ -89,7 +89,12 @@ namespace MarkdownApi.Web.Models.Extensions
         {
             if (await model.Validate(context, true))
             {
-                var wiki = await context.Wikis.FindAsync(model.id);
+                var wiki = context.Wikis.Include("Category").FirstOrDefault(x => x.Id == model.id);
+
+                if (!(model.category.name.ToLower().Equals(wiki.Category.Name.ToLower())))
+                {
+                    await context.RenameCategory(model.category);
+                }
 
                 wiki.Name = model.name;
                 wiki.Description = model.description;
@@ -122,6 +127,11 @@ namespace MarkdownApi.Web.Models.Extensions
             if (string.IsNullOrEmpty(model.description))
             {
                 throw new Exception("The provided wiki does not specify a description");
+            }
+
+            if (string.IsNullOrEmpty(model.category.name))
+            {
+                throw new Exception("The provided wiki does not specify a category");
             }
 
             return true;
@@ -157,8 +167,11 @@ namespace MarkdownApi.Web.Models.Extensions
             }
 
             var wiki = await context.Wikis.FindAsync(model.id);
+            var category = model.category.name;
+
             context.Wikis.Remove(wiki);
             await context.SaveChangesAsync();
+            await context.DeleteCategoryIfEmpty(category);
         }
     }
 }

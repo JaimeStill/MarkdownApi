@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDbContext.cs" />
+    <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Document.cs" />
     <Compile Include="Entities\Wiki.cs" />
     <Compile Include="Migrations\201609172229234_initial.cs" />
@@ -63,6 +64,10 @@
     <Compile Include="Migrations\201609191910123_project-to-wiki.cs" />
     <Compile Include="Migrations\201609191910123_project-to-wiki.Designer.cs">
       <DependentUpon>201609191910123_project-to-wiki.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609211350156_add-category.cs" />
+    <Compile Include="Migrations\201609211350156_add-category.Designer.cs">
+      <DependentUpon>201609211350156_add-category.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -80,6 +85,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609191910123_project-to-wiki.resx">
       <DependentUpon>201609191910123_project-to-wiki.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609211350156_add-category.resx">
+      <DependentUpon>201609211350156_add-category.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

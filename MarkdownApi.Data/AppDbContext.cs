@@ -13,6 +13,7 @@ namespace MarkdownApi.Data
             return new AppDbContext();
         }
 
+        public DbSet<Category> Categories { get; set; }
         public DbSet<Document> Documents { get; set; }
         public DbSet<Wiki> Wikis { get; set; }
 

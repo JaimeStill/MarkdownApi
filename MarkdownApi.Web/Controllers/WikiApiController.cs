@@ -31,13 +31,6 @@ namespace MarkdownApi.Web.Controllers
             return await Context.GetWikis();
         }
 
-        [Route("api/wikis/findWikis")]
-        [HttpPost]
-        public async Task<IEnumerable<WikiModel>> FindWikis(string wikis)
-        {
-            return await Context.FindWikis(wikis);
-        }
-
         [Route("api/wikis/getWiki/{id}")]
         [HttpPost]
         public async Task<WikiModel> GetWiki(int id)

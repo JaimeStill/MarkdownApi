@@ -170,15 +170,20 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CategoryApiController.cs" />
     <Compile Include="Controllers\DocumentApiController.cs" />
+    <Compile Include="Controllers\FilterApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WikiApiController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\DocumentModel.cs" />
+    <Compile Include="Models\Extensions\CategoryExtensions.cs" />
     <Compile Include="Models\Extensions\DocumentExtensions.cs" />
+    <Compile Include="Models\Extensions\FilterExtensions.cs" />
     <Compile Include="Models\Extensions\WikiExtensions.cs" />
     <Compile Include="Models\Extensions\UtilityExtensions.cs" />
     <Compile Include="Models\WikiModel.cs" />
@@ -198,6 +203,7 @@
     <Content Include="Content\templates\core\manage-wikis.html" />
     <Content Include="Content\templates\core\wiki-card.html" />
     <Content Include="Content\templates\core\render-markdown.html" />
+    <Content Include="Content\templates\core\wiki-category.html" />
     <Content Include="Content\templates\core\wiki-nav.html" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
@@ -205,13 +211,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\site.css" />
+    <Content Include="Scripts\app\core\filters\dashifyFilter.js" />
     <Content Include="Scripts\app\core\manageDocument.js" />
     <Content Include="Scripts\app\core\manageWiki.js" />
     <Content Include="Scripts\app\core\manageWikis.js" />
+    <Content Include="Scripts\app\core\services\categorySvc.js" />
     <Content Include="Scripts\app\core\wikiCard.js" />
     <Content Include="Scripts\app\core\renderMarkdown.js" />
     <Content Include="Scripts\app\core\services\documentSvc.js" />
     <Content Include="Scripts\app\core\services\wikiSvc.js" />
+    <Content Include="Scripts\app\core\wikiCategory.js" />
     <Content Include="Scripts\app\core\wikiNav.js" />
     <Content Include="Scripts\lib\angular-sanitize.js" />
     <Content Include="Scripts\lib\angular-sanitize.min.js" />

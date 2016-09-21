@@ -1,55 +1,6 @@
 ﻿(function () {
     var wikiSvc = function ($http, $q, toastrSvc, utilitySvc) {
         var
-            model = {
-                wikis: [],
-                loading: true,
-                emptyMessage: ''
-            },
-            getWikis = function () {
-                var deferred = $q.defer();
-                model.loading = true;
-
-                $http({
-                    url: '/api/wikis/getWikis',
-                    method: 'GET'
-                }).success(function (data) {
-                    if (data.length < 1) {
-                        model.emptyMessage = 'No wikis have been created yet...'
-                    }
-                    model.wikis = data;
-                    deferred.resolve(data);
-                }).error(function (err) {
-                    utilitySvc.toastErrorMessage(err, "Error Retrieving Wikis");
-                    deferred.reject(err);
-                }).finally(function () {
-                    model.loading = false;
-                });
-
-                return deferred.promise;
-            },
-            findWikis = function (wikis) {
-                var deferred = $q.defer();
-                model.loading = true;
-
-                $http({
-                    url: '/api/wikis/findWikis?wikis=' + wikis,
-                    method: 'POST'
-                }).success(function (data) {
-                    if (data.length < 1) {
-                        model.emptyMessage = 'No wikis have a title that contains ' + wikis;
-                    }
-                    model.wikis = data;
-                    deferred.resolve(data);
-                }).error(function (err) {
-                    utilitySvc.toastErrorMessage(err, "Error Finding Wikis");
-                    deferred.reject(err);
-                }).finally(function () {
-                    model.loading = false;
-                });
-
-                return deferred.promise;
-            },
             getWiki = function (id) {
                 var deferred = $q.defer();
 
@@ -117,9 +68,6 @@
             };
 
         return {
-            model: model,
-            getWikis: getWikis,
-            findWikis: findWikis,
             getWiki: getWiki,
             addWiki: addWiki,
             updateWiki: updateWiki,
