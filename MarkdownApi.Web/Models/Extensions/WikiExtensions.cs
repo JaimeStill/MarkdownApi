@@ -24,6 +24,11 @@ namespace MarkdownApi.Web.Models.Extensions
                     {
                         id = x.CategoryId,
                         name = x.Category.Name
+                    },
+                    sidebar = new SidebarModel
+                    {
+                        id = x.SidebarId,
+                        markdown = x.Sidebar.Markdown                       
                     }
                 }).OrderBy(x => x.name).AsEnumerable();
 
@@ -35,7 +40,7 @@ namespace MarkdownApi.Web.Models.Extensions
         {
             return Task.Run(() =>
             {
-                var wiki = context.Wikis.Include("Category").Include("Documents").FirstOrDefault(x => x.Id == id);
+                var wiki = context.Wikis.Include("Category").Include("Sidebar").Include("Documents").FirstOrDefault(x => x.Id == id);
 
                 var model = new WikiModel
                 {
@@ -47,6 +52,11 @@ namespace MarkdownApi.Web.Models.Extensions
                     {
                         id = wiki.CategoryId,
                         name = wiki.Category.Name
+                    },
+                    sidebar = new SidebarModel
+                    {
+                        id = wiki.SidebarId,
+                        markdown = wiki.Sidebar.Markdown
                     },
                     documents = wiki.Documents.Select(x => new DocumentModel
                     {
@@ -71,7 +81,11 @@ namespace MarkdownApi.Web.Models.Extensions
                     Name = model.name,
                     Description = model.description,
                     Markdown = model.markdown,
-                    CategoryId = category.Id
+                    CategoryId = category.Id,
+                    Sidebar = new Sidebar
+                    {
+                        Markdown = model.sidebar.markdown
+                    }
                 };
 
                 context.Wikis.Add(wiki);
@@ -89,7 +103,7 @@ namespace MarkdownApi.Web.Models.Extensions
         {
             if (await model.Validate(context, true))
             {
-                var wiki = context.Wikis.Include("Category").FirstOrDefault(x => x.Id == model.id);
+                var wiki = context.Wikis.Include("Category").Include("Sidebar").FirstOrDefault(x => x.Id == model.id);
 
                 if (!(model.category.name.ToLower().Equals(wiki.Category.Name.ToLower())))
                 {
@@ -99,6 +113,7 @@ namespace MarkdownApi.Web.Models.Extensions
                 wiki.Name = model.name;
                 wiki.Description = model.description;
                 wiki.Markdown = model.markdown;
+                wiki.Sidebar.Markdown = model.sidebar.markdown;
 
                 await context.SaveChangesAsync();
             }
@@ -167,8 +182,10 @@ namespace MarkdownApi.Web.Models.Extensions
             }
 
             var wiki = await context.Wikis.FindAsync(model.id);
+            var sidebar = await context.Sidebars.FindAsync(wiki.SidebarId);
             var category = model.category.name;
 
+            context.Sidebars.Remove(sidebar);
             context.Wikis.Remove(wiki);
             await context.SaveChangesAsync();
             await context.DeleteCategoryIfEmpty(category);

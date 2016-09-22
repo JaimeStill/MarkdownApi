@@ -15,12 +15,20 @@ namespace MarkdownApi.Data
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Document> Documents { get; set; }
+        public DbSet<Sidebar> Sidebars { get; set; }
         public DbSet<Wiki> Wikis { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+
+            modelBuilder.Entity<Sidebar>()
+                .HasKey(x => x.Id);
+
+            modelBuilder.Entity<Wiki>()
+                .HasRequired(x => x.Sidebar)
+                .WithRequiredPrincipal(x => x.Wiki);
         }
     }
 }

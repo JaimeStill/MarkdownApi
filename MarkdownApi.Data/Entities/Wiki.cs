@@ -6,11 +6,13 @@ namespace MarkdownApi.Data.Entities
     {
         public int Id { get; set; }
         public int CategoryId { get; set; }
+        public int SidebarId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Markdown { get; set; }
 
         public Category Category { get; set; }
+        public Sidebar Sidebar { get; set; }
 
         public virtual ICollection<Document> Documents { get; set; }
     }

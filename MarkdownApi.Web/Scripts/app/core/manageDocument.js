@@ -1,5 +1,5 @@
 ﻿(function () {
-    var manageDocument = function (wikiSvc, documentSvc, markdownSvc, toastrSvc) {
+    var manageDocument = function (wikiSvc, documentSvc, toastrSvc) {
         return {
             restrict: 'EA',
             replace: true,
@@ -18,6 +18,10 @@
                         id: scope.wikiId,
                         category: {
                             name: ''
+                        },
+                        sidebar: {
+                            markdown: '',
+                            html: ''
                         }
                     }
                 }
@@ -62,6 +66,6 @@
         }
     };
 
-    manageDocument.$inject = ['wikiSvc', 'documentSvc', 'markdownSvc', 'toastrSvc'];
+    manageDocument.$inject = ['wikiSvc', 'documentSvc', 'toastrSvc'];
     wikiApp.directive('manageDocument', manageDocument);
 }());

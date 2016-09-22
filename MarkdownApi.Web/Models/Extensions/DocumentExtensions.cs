@@ -22,7 +22,12 @@ namespace MarkdownApi.Web.Models.Extensions
                     {
                         name = x.Wiki.Name,
                         description = x.Wiki.Description,
-                        id = wikiId
+                        id = wikiId,
+                        sidebar = new SidebarModel
+                        {
+                            id = x.Wiki.SidebarId,
+                            markdown = x.Wiki.Sidebar.Markdown
+                        }
                     }
                 }).OrderBy(x => x.title).AsEnumerable();
 
@@ -33,7 +38,7 @@ namespace MarkdownApi.Web.Models.Extensions
         public static async Task<DocumentModel> GetDocument(this AppDbContext context, int documentId)
         {
             var document = await context.Documents.FindAsync(documentId);
-            var wiki = context.Wikis.Include("Category").FirstOrDefault(x => x.Id == document.WikiId);
+            var wiki = context.Wikis.Include("Category").Include("Sidebar").FirstOrDefault(x => x.Id == document.WikiId);
 
             var model = new DocumentModel
             {
@@ -45,10 +50,16 @@ namespace MarkdownApi.Web.Models.Extensions
                     id = wiki.Id,
                     name = wiki.Name,
                     description = wiki.Description,
+                    markdown = wiki.Markdown,
                     category = new CategoryModel
                     {
                         id = wiki.CategoryId,
                         name = wiki.Category.Name
+                    },
+                    sidebar = new SidebarModel
+                    {
+                        id = wiki.SidebarId,
+                        markdown = wiki.Sidebar.Markdown
                     }
                 }
             };

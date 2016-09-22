@@ -52,6 +52,7 @@
     <Compile Include="AppDbContext.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Document.cs" />
+    <Compile Include="Entities\Sidebar.cs" />
     <Compile Include="Entities\Wiki.cs" />
     <Compile Include="Migrations\201609172229234_initial.cs" />
     <Compile Include="Migrations\201609172229234_initial.Designer.cs">
@@ -68,6 +69,10 @@
     <Compile Include="Migrations\201609211350156_add-category.cs" />
     <Compile Include="Migrations\201609211350156_add-category.Designer.cs">
       <DependentUpon>201609211350156_add-category.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609221419392_wiki-sidebar.cs" />
+    <Compile Include="Migrations\201609221419392_wiki-sidebar.Designer.cs">
+      <DependentUpon>201609221419392_wiki-sidebar.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -88,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609211350156_add-category.resx">
       <DependentUpon>201609211350156_add-category.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609221419392_wiki-sidebar.resx">
+      <DependentUpon>201609221419392_wiki-sidebar.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

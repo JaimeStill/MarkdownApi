@@ -28,7 +28,7 @@
             <div ng-repeat="wiki in category.wikis" ng-if="category.wikis.length > 0" class="col-sm-3">
                 <wiki-card wiki="wiki" wiki-link="wikiLink"></wiki-card>
             </div>
-            <div ng-if="!(category.wikis.length > 0)">
+            <div ng-if="!(category.wikis.length > 0)" class="text-danger">
                 <h3>This category does not contain any Wikis...</h3>
             </div>
         </div>

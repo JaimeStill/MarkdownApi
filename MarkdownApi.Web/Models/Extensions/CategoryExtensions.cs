@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace MarkdownApi.Web.Models.Extensions
 {
@@ -22,33 +21,9 @@ namespace MarkdownApi.Web.Models.Extensions
                     {
                         id = y.Id,
                         name = y.Name,
-                        description = y.Description,
-                        markdown = y.Markdown
+                        description = y.Description
                     }).OrderBy(y => y.name).AsEnumerable()
                 }).OrderBy(x => x.name).AsEnumerable();
-
-                return model;
-            });
-        }
-
-        public static Task<CategoryModel> GetCategory(this AppDbContext context, int id)
-        {
-            return Task.Run(() =>
-            {
-                var category = context.Categories.Include("Wikis").FirstOrDefault(x => x.Id == id);
-
-                var model = new CategoryModel
-                {
-                    id = category.Id,
-                    name = category.Name,
-                    wikis = category.Wikis.Select(x => new WikiModel
-                    {
-                        id = x.Id,
-                        name = x.Name,
-                        description = x.Description,
-                        markdown = x.Markdown
-                    }).OrderBy(x => x.name).AsEnumerable()
-                };
 
                 return model;
             });

@@ -42,9 +42,16 @@
                 <strong ng-bind="document.wiki.category.name"></strong> - <strong ng-bind="document.wiki.name"></strong> - <span ng-bind="document.wiki.description"></span>
             </p>
             <hr />
-            <h2 ng-bind="document.title"></h2>
+            <h3 ng-bind="document.title"></h3>
             <hr />
-            <render-markdown render="document"></render-markdown>
+            <div class="row">
+                <div ng-class="document.wiki.sidebar.markdown.length > 0 ? 'col-xs-9' : 'col-xs-12'">
+                    <render-markdown render="document"></render-markdown>
+                </div>
+                <div ng-if="document.wiki.sidebar.markdown.length > 0" class="col-xs-3">
+                    <render-markdown render="document.wiki.sidebar"></render-markdown>
+                </div>
+            </div>
         </div>
     </div>
 </div>

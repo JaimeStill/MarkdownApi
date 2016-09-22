@@ -45,43 +45,80 @@
                 </div>
             </div>
             <div ng-if="wiki.documents.length > 0">
-                <h3>Wiki Documents</h3>
-                <div class="row">
-                    <div class="col-md-4">
-                        <table class="table table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Title</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="document in wiki.documents">
-                                    <td class="vertical-center" ng-bind="document.title"></td>
-                                    <td class="text-right">
-                                        <div class="btn-group btn-group-sm">
-                                            <a class="btn btn-primary btn-sm" ng-href="/Admin/Wiki/{{wiki.id}}/Document/{{document.id}}">Edit</a>
-                                            <button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="#" ng-click="deleteDocument(document)">Delete</a></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <a class="card-link" data-toggle="collapse" href="#editor-documents">
+                    <h4>Documents</h4>
+                </a>
+                <div class="collapse" id="editor-documents">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="document in wiki.documents">
+                                        <td class="vertical-center" ng-bind="document.title"></td>
+                                        <td class="text-right">
+                                            <div class="btn-group btn-group-sm">
+                                                <a class="btn btn-primary btn-sm" ng-href="/Admin/Wiki/{{wiki.id}}/Document/{{document.id}}">Edit</a>
+                                                <button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#" ng-click="deleteDocument(document)">Delete</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
+            <hr />
             <h3>Markdown</h3>
-            <textarea ng-model="wiki.markdown" class="form-control" spellcheck="false" rows="35"></textarea>
+            <textarea ng-model="wiki.markdown" class="form-control" spellcheck="false" rows="20"></textarea>
+            <hr />
+            <h3>Sidebar</h3>
+            <textarea ng-model="wiki.sidebar.markdown" class="form-control" spellcheck="false" rows="20"></textarea>
         </div>
         <div role="tabpanel" class="tab-pane" id="viewer">
-            <h2><span ng-bind="wiki.category.name"></span> - <span ng-bind="wiki.name"></span></h2>
+            <p class="wiki-header">
+                <strong ng-bind="wiki.category.name"></strong> - <strong ng-bind="wiki.name"></strong>
+            </p>
             <hr />
             <p ng-bind="wiki.description"></p>
             <hr />
-            <render-markdown render="wiki"></render-markdown>
+            <div ng-if="wiki.documents.length > 0">
+                <a class="card-link" data-toggle="collapse" href="#documents">
+                    <h4>Documents</h4>
+                </a>
+                <div class="collapse" id="documents">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <table class="table table-striped table-hover">
+                                <tbody>
+                                    <tr ng-repeat="document in wiki.documents">
+                                        <td>
+                                            <a ng-href="/Wiki/{{wiki.id}}/Document/{{document.id}}" class="btn btn-link">{{document.title}}</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div ng-class="wiki.sidebar.markdown.length > 0 ? 'col-xs-9' : 'col-xs-12'">
+                    <render-markdown render="wiki"></render-markdown>
+                </div>
+                <div ng-if="wiki.sidebar.markdown.length > 0" class="col-xs-3">
+                    <render-markdown render="wiki.sidebar"></render-markdown>
+                </div>
+            </div>
         </div>
     </div>
 </div>

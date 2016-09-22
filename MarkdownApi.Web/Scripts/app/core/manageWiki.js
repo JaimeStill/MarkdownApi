@@ -1,5 +1,5 @@
 ﻿(function () {
-    var manageWiki = function (wikiSvc, markdownSvc, toastrSvc) {
+    var manageWiki = function (wikiSvc, toastrSvc) {
         return {
             restrict: 'EA',
             replace: true,
@@ -17,6 +17,10 @@
                             html: '',
                             category: {
                                 name: ''
+                            },
+                            sidebar: {
+                                markdown: '',
+                                html: ''
                             }
                         }
 
@@ -68,6 +72,6 @@
         }
     };
 
-    manageWiki.$inject = ['wikiSvc', 'markdownSvc', 'toastrSvc'];
+    manageWiki.$inject = ['wikiSvc', 'toastrSvc'];
     wikiApp.directive('manageWiki', manageWiki);
 }());
