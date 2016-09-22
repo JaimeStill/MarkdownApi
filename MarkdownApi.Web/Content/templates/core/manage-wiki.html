@@ -48,7 +48,7 @@
                 <a class="card-link" data-toggle="collapse" href="#editor-documents">
                     <h4>Documents</h4>
                 </a>
-                <div class="collapse" id="editor-documents">
+                <div class="collapse in" id="editor-documents">
                     <div class="row">
                         <div class="col-sm-6">
                             <table class="table table-striped table-hover">
@@ -85,40 +85,7 @@
             <textarea ng-model="wiki.sidebar.markdown" class="form-control" spellcheck="false" rows="20"></textarea>
         </div>
         <div role="tabpanel" class="tab-pane" id="viewer">
-            <p class="wiki-header">
-                <strong ng-bind="wiki.category.name"></strong> - <strong ng-bind="wiki.name"></strong>
-            </p>
-            <hr />
-            <p ng-bind="wiki.description"></p>
-            <hr />
-            <div ng-if="wiki.documents.length > 0">
-                <a class="card-link" data-toggle="collapse" href="#documents">
-                    <h4>Documents</h4>
-                </a>
-                <div class="collapse" id="documents">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <table class="table table-striped table-hover">
-                                <tbody>
-                                    <tr ng-repeat="document in wiki.documents">
-                                        <td>
-                                            <a ng-href="/Wiki/{{wiki.id}}/Document/{{document.id}}" class="btn btn-link">{{document.title}}</a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div ng-class="wiki.sidebar.markdown.length > 0 ? 'col-xs-9' : 'col-xs-12'">
-                    <render-markdown render="wiki"></render-markdown>
-                </div>
-                <div ng-if="wiki.sidebar.markdown.length > 0" class="col-xs-3">
-                    <render-markdown render="wiki.sidebar"></render-markdown>
-                </div>
-            </div>
+            <render-wiki wiki="wiki"></render-wiki>
         </div>
     </div>
 </div>

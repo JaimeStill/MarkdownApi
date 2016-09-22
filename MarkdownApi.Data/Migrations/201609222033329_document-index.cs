@@ -1,0 +1,18 @@
+namespace MarkdownApi.Data.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class documentindex : DbMigration
+    {
+        public override void Up()
+        {
+            AddColumn("dbo.Documents", "Index", c => c.Int(nullable: false));
+        }
+        
+        public override void Down()
+        {
+            DropColumn("dbo.Documents", "Index");
+        }
+    }
+}

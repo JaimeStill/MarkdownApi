@@ -60,6 +60,15 @@
                         return false;
                     }
 
+                    if (document.index === null || document.index === undefined) {
+                        toastrSvc.alertError("Index must have a value", "Invalid Document");
+                        return false;
+                    } else if (document.index < 0) {
+                        toastrSvc.alertError("Index must be greater than zero", "Invalid Document");
+                        return false;
+                    }
+
+
                     return true;
                 }
             }

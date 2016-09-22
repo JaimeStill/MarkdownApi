@@ -74,6 +74,10 @@
     <Compile Include="Migrations\201609221419392_wiki-sidebar.Designer.cs">
       <DependentUpon>201609221419392_wiki-sidebar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609222033329_document-index.cs" />
+    <Compile Include="Migrations\201609222033329_document-index.Designer.cs">
+      <DependentUpon>201609222033329_document-index.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -96,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609221419392_wiki-sidebar.resx">
       <DependentUpon>201609221419392_wiki-sidebar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609222033329_document-index.resx">
+      <DependentUpon>201609222033329_document-index.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -63,7 +63,7 @@ namespace MarkdownApi.Web.Models.Extensions
                         id = x.Id,
                         markdown = x.Markdown,
                         title = x.Title
-                    }).AsEnumerable()
+                    }).OrderBy(x => x.index).OrderBy(x => x.title).AsEnumerable()
                 };
 
                 return model;

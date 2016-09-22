@@ -16,6 +16,7 @@ namespace MarkdownApi.Web.Models.Extensions
                 var model = context.Documents.Where(x => x.WikiId == wikiId).Select(x => new DocumentModel
                 {
                     id = x.Id,
+                    index = x.Index,
                     title = x.Title,
                     markdown = x.Markdown,
                     wiki = new WikiModel
@@ -29,7 +30,7 @@ namespace MarkdownApi.Web.Models.Extensions
                             markdown = x.Wiki.Sidebar.Markdown
                         }
                     }
-                }).OrderBy(x => x.title).AsEnumerable();
+                }).OrderBy(x => x.index).OrderBy(x => x.title).AsEnumerable();
 
                 return model;
             });
@@ -38,11 +39,12 @@ namespace MarkdownApi.Web.Models.Extensions
         public static async Task<DocumentModel> GetDocument(this AppDbContext context, int documentId)
         {
             var document = await context.Documents.FindAsync(documentId);
-            var wiki = context.Wikis.Include("Category").Include("Sidebar").FirstOrDefault(x => x.Id == document.WikiId);
+            var wiki = context.Wikis.Include("Category").Include("Sidebar").Include("Documents").FirstOrDefault(x => x.Id == document.WikiId);
 
             var model = new DocumentModel
             {
                 id = document.Id,
+                index = document.Index,
                 title = document.Title,
                 markdown = document.Markdown,
                 wiki = new WikiModel
@@ -60,7 +62,14 @@ namespace MarkdownApi.Web.Models.Extensions
                     {
                         id = wiki.SidebarId,
                         markdown = wiki.Sidebar.Markdown
-                    }
+                    },
+                    documents = wiki.Documents.Select(x => new DocumentModel
+                    {
+                        id = x.Id,
+                        index = x.Index,
+                        title = x.Title,
+                        markdown = x.Markdown
+                    }).OrderBy(x => x.index).OrderBy(x => x.title).AsEnumerable()
                 }
             };
 
@@ -73,6 +82,7 @@ namespace MarkdownApi.Web.Models.Extensions
             {
                 var document = new Document
                 {
+                    Index = model.index,
                     Title = model.title,
                     Markdown = model.markdown,
                     WikiId = model.wiki.id
@@ -95,6 +105,7 @@ namespace MarkdownApi.Web.Models.Extensions
             {
                 var document = await context.Documents.FindAsync(model.id);
 
+                document.Index = model.index;
                 document.Title = model.title;
                 document.Markdown = model.markdown;
 
@@ -110,6 +121,11 @@ namespace MarkdownApi.Web.Models.Extensions
                 {
                     throw new Exception("The provided document does not specify an ID");
                 }
+            }
+
+            if (model.index < 0)
+            {
+                throw new Exception("Thte provided document index must be zero or greater");
             }
 
             if (await model.Exists(context, updating))

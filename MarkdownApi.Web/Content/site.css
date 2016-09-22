@@ -75,3 +75,7 @@
 .wiki-header {
     font-size: 16px;
 }
+
+.sidebar img {
+    max-width: 256px;
+}

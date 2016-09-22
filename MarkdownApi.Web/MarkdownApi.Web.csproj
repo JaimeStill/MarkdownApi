@@ -203,6 +203,8 @@
     <Content Include="Content\templates\core\manage-document.html" />
     <Content Include="Content\templates\core\manage-wiki.html" />
     <Content Include="Content\templates\core\manage-wikis.html" />
+    <Content Include="Content\templates\core\render-document.html" />
+    <Content Include="Content\templates\core\render-wiki.html" />
     <Content Include="Content\templates\core\view-document.html" />
     <Content Include="Content\templates\core\view-wiki.html" />
     <Content Include="Content\templates\core\wiki-card.html" />
@@ -220,6 +222,8 @@
     <Content Include="Scripts\app\core\manageDocument.js" />
     <Content Include="Scripts\app\core\manageWiki.js" />
     <Content Include="Scripts\app\core\manageWikis.js" />
+    <Content Include="Scripts\app\core\renderDocument.js" />
+    <Content Include="Scripts\app\core\renderWiki.js" />
     <Content Include="Scripts\app\core\services\categorySvc.js" />
     <Content Include="Scripts\app\core\viewDocument.js" />
     <Content Include="Scripts\app\core\viewWiki.js" />

@@ -1,0 +1,30 @@
+﻿<div>
+    <p class="wiki-header">
+        <strong ng-bind="wiki.category.name"></strong> - <strong ng-bind="wiki.name"></strong>
+    </p>
+    <hr />
+    <p ng-bind="wiki.description"></p>
+    <div class="row">
+        <div ng-class="wiki.sidebar.markdown.length > 0 ? 'col-xs-9' : wiki.documents.length > 0 ? 'col-xs-9' : 'col-xs-12'">
+            <render-markdown render="wiki"></render-markdown>
+        </div>
+        <div class="col-xs-3 sidebar" ng-if="wiki.sidebar.markdown.length > 0 || wiki.documents.length > 0">
+            <render-markdown ng-if="wiki.sidebar.markdown.length > 0" render="wiki.sidebar"></render-markdown>
+            <hr />
+            <a class="card-link" data-toggle="collapse" href="#documents" ng-if="wiki.documents.length > 0">
+                <h4>Documents</h4>
+            </a>
+            <div class="collapse in" id="documents" ng-if="wiki.documents.length > 0">
+                <table class="table table-striped table-hover">
+                    <tbody>
+                        <tr ng-repeat="document in wiki.documents">
+                            <td>
+                                <a ng-href="/Wiki/{{wiki.id}}/Document/{{document.id}}" class="btn btn-link">{{document.title}}</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
