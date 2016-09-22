@@ -31,13 +31,6 @@ namespace MarkdownApi.Web.Controllers
             return await Context.GetCategories();
         }
 
-        [Route("api/categories/getCategory/{id}")]
-        [HttpPost]
-        public async Task<CategoryModel> GetCategory(int id)
-        {
-            return await Context.GetCategory(id);
-        }
-
         [Route("api/categories/renameCategory")]
         [HttpPost]
         public async Task<bool> RenameCategory(CategoryModel model)
