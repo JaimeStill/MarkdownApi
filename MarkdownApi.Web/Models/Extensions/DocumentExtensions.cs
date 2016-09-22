@@ -68,8 +68,12 @@ namespace MarkdownApi.Web.Models.Extensions
                         id = x.Id,
                         index = x.Index,
                         title = x.Title,
-                        markdown = x.Markdown
-                    }).OrderBy(x => x.index).OrderBy(x => x.title).AsEnumerable()
+                        markdown = x.Markdown,
+                        wiki = new WikiModel
+                        {
+                            id = wiki.Id
+                        }
+                    }).OrderBy(x => x.index).AsEnumerable()
                 }
             };
 

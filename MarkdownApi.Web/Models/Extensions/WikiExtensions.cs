@@ -28,8 +28,15 @@ namespace MarkdownApi.Web.Models.Extensions
                     sidebar = new SidebarModel
                     {
                         id = x.SidebarId,
-                        markdown = x.Sidebar.Markdown                       
-                    }
+                        markdown = x.Sidebar.Markdown
+                    },
+                    documents = x.Documents.Select(y => new DocumentModel
+                    {
+                        id = y.Id,
+                        index = y.Index,
+                        title = y.Title,
+                        markdown = y.Markdown
+                    }).OrderBy(y => y.index).AsEnumerable()
                 }).OrderBy(x => x.name).AsEnumerable();
 
                 return model;
@@ -63,7 +70,7 @@ namespace MarkdownApi.Web.Models.Extensions
                         id = x.Id,
                         markdown = x.Markdown,
                         title = x.Title
-                    }).OrderBy(x => x.index).OrderBy(x => x.title).AsEnumerable()
+                    }).OrderBy(x => x.index).AsEnumerable()
                 };
 
                 return model;
