@@ -194,6 +194,11 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\prettify-themes\github.css" />
+    <Content Include="Content\prettify-themes\tomorrow-night.css" />
+    <Content Include="Content\prettify-themes\tomorrow.css" />
+    <Content Include="Content\prettify-themes\tomrrow-night-eighties.css" />
+    <Content Include="Content\prettify-themes\vibrant-ink.css" />
     <Content Include="Content\prettify.css" />
     <Content Include="Content\prettify-themes\desert.css" />
     <Content Include="Content\prettify-themes\doxy.css" />
